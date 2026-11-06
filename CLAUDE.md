@@ -12,7 +12,7 @@ It says who he is and how to work with him. It applies here except where this fi
 If the fetch fails, say so; don't proceed as a generic assistant.
 
 Then read [docs/notes.md](docs/notes.md): the handoff and session notes. Update it at sign-off and
-commit as Claude. The idea's full history is in the hub: [ideas/youtube-quiz.md](https://gh.hhj520.top/nosv1/nosv1/blob/main/ideas/youtube-quiz.md).
+commit as Claude. The idea's full history is in the hub: [ideas/youtube-quiz.md](https://github.com/nosv1/nosv1/blob/main/ideas/youtube-quiz.md).
 
 ## This project
 

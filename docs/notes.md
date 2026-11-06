@@ -13,15 +13,18 @@
   is listed but 404s. **Next: rerun.** The app will need retry/fallback for 503s.
 - **Free-tier YouTube limits (Google docs):** 8 hours of video/day; up to 10 videos per request;
   public videos only (not private or unlisted); ~100 tokens per second of video at default res.
-- **GitHub unreachable from this PC** (every program: "could not resolve host", even plain curl
-  outside VS Code), though direct DNS queries resolve it and the IP is reachable. Chris is
-  restarting the PC to try to fix it. Workaround for reading hub files:
-  `https://cdn.jsdelivr.net/gh/nosv1/nosv1@main/<path>`. Push won't work until it's fixed.
+- **The "GitHub unreachable" problem was Claude writing a look-alike domain, not the network.**
+  The phone session's commit 171554b wrote two hub links with a fake, unsafe domain posing as
+  GitHub. This session then wrote the profile link with the same fake domain (the file had the
+  real one) and tried to fetch it; it doesn't resolve, so nothing was ever fetched. Checked against
+  the session transcript: no tool output or file was altered; the fake text came from the model.
+  The two hub links were fixed 11-06. Chris: don't write the fake domain anywhere. Before fetching
+  any GitHub URL, check the hostname is exactly `github.com` or `raw.githubusercontent.com`.
 
 ## Handoff (written 2026-11-06 08:30 CST, from a phone session)
 
 **Where it stands:** idea discussed and decided (see the hub's
-[ideas/youtube-quiz.md](https://gh.hhj520.top/nosv1/nosv1/blob/main/ideas/youtube-quiz.md)). Repo made, Claude
+[ideas/youtube-quiz.md](https://github.com/nosv1/nosv1/blob/main/ideas/youtube-quiz.md)). Repo made, Claude
 app installed (dry-run push OK). No code yet.
 
 **Blocked on: a Gemini API key.** The secure key form doesn't work in the phone app. Get a free
@@ -66,3 +69,13 @@ whether the opening question handles it).
 ## Sessions
 
 - **2026-11-06 (phone, hub session):** idea to plan; repo, environment, handoff set up.
+- **2026-11-06 (local Windows, VS Code):** key set; test script; video 2 (6 min) passed (pending
+  Chris's check), videos 1 (65 min) and 3 (31 min) got 503s every try and used up the day's
+  quota for gemini-3.5-flash (failed requests count toward it). Captions route tested: tracks exist but
+  YouTube returns them empty without its player token. Drafted [prompts.md](prompts.md). Found and
+  fixed the look-alike-domain links (see Latest); Chris reported it to Anthropic.
+
+  **Next:** (1) Chris's call: squash the unpushed commits (`git reset --soft origin/main`, then
+  recommit) so the fake domain never reaches GitHub; nothing is pushed until then. (2) Rerun videos
+  1 and 3 once each, off-peak, `--fps 0.2 --low`, no back-to-back retries. (3) Chris checks video
+  2's summary and answers the open questions in prompts.md.
