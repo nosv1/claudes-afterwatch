@@ -75,7 +75,6 @@ whether the opening question handles it).
   YouTube returns them empty without its player token. Drafted [prompts.md](prompts.md). Found and
   fixed the look-alike-domain links (see Latest); Chris reported it to Anthropic.
 
-  **Next:** (1) Chris's call: squash the unpushed commits (`git reset --soft origin/main`, then
-  recommit) so the fake domain never reaches GitHub; nothing is pushed until then. (2) Rerun videos
+  **Next:** (Local commits were squashed into 2425608 and pushed, without the fake domain.) (2) Rerun videos
   1 and 3 once each, off-peak, `--fps 0.2 --low`, no back-to-back retries. (3) Chris checks video
   2's summary and answers the open questions in prompts.md.
